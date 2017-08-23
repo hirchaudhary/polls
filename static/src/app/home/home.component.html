@@ -1,0 +1,58 @@
+
+<body>
+  <div class="header">
+      <h1 *ngIf="user">Hi {{user.name}}</h1>
+      <button [routerLink]="['/newQuestion']">Create Poll</button>
+      <button (click)="logout()">Log off</button>
+  </div>
+  <!-- list of all your questions -->
+  <div class="search">
+      <div class="form">
+          <table>
+              <tr>
+                  <td><label for="content">Search:</label></td>
+                  <td><input class="content" type="text" name="content"  required [(ngModel)]="search.content" #content="ngModel"></td>
+                  <td><button (click)='getSearch()'>Search</button></td>
+              </tr>
+          </table>
+        </div>
+  </div>
+
+  <div *ngIf="searchQuestions.length==0 && questions.length>0">
+    <table>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Date Posted</th>
+            <th>Action</th>
+        </tr>
+
+        <tr *ngFor="let que of questions">
+            <td>{{ que.user }}</td>
+            <td><a [routerLink]="['/poll', que._id ]">{{ que.question }}</a></td>
+            <td>{{ que.createdAt |date:'longDate'}}</td>
+            <td>
+                <button *ngIf="que.user==user.name" (click)="delete(que._id)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+    <div *ngIf="searchQuestions.length>0">
+        <table>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Action</th>
+            </tr>
+
+            <tr *ngFor="let que of searchQuestions">
+                    <td>{{ que.user }}</td>
+                    <td><a [routerLink]="['/poll', que._id ]">{{ que.question }}</a></td>
+                <td>{{ que.createdAt |date:'longDate'}}</td>
+                <td>
+                <button *ngIf="que.user==user.name" (click)="delete(que._id)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>

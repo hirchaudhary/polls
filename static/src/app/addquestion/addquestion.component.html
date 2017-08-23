@@ -1,0 +1,51 @@
+<div class="header">
+        <button [routerLink]="['/gohome']">Go home</button>
+    <button (click)="logout()">Log off</button>
+</div>
+  
+  <div class="form">
+    <table>
+    <form (submit)="newQuestion()" #questionForm="ngForm">
+        <!-- Title -->
+        <tr>
+            <td><label for="question">question:</label></td>
+            <td><input type="text" name="question"  required minlength="8" [(ngModel)]="que.question" #question="ngModel"></td>   
+            <td><p *ngIf="!question.valid">Question must be minimun 8 characters</p></td>
+        </tr>
+      
+        <!-- OptionOne -->
+        <tr>
+          <td> <label for="one">Option 1:</label></td>
+          <td><input type="text" name="one"  required minlength="3" [(ngModel)]="opt.one" #one="ngModel"></td>
+          <td><p *ngIf="!one.valid">Option must be minimun 3 characters</p></td>
+        </tr>
+           <!-- OptionTwo -->
+        <tr>
+          <td><label for="two">Option 2:</label></td>
+          <td><input type="text" name="two"  required minlength="3" [(ngModel)]="opt.two" #two="ngModel"></td>   
+          <td><p *ngIf="!two.valid">Option must be minimun 3 characters</p></td>
+      </tr>
+            <!-- OptionThree -->
+            <tr>
+              <td> <label for="three">Option 3:</label></td>
+              <td><input type="text" name="three" minlength="3" required [(ngModel)]="opt.three" #three="ngModel"></td> 
+              <td><p *ngIf="!three.valid">Option must be minimun 3 characters</p></td>
+          </tr>
+                <!-- Option -->
+        <tr>
+          <td> <label for="four">Option 4:</label></td>
+          <td><input type="text" name="four" minlength="3" required [(ngModel)]="opt.four" #four="ngModel"></td> 
+          <td><p *ngIf="!four.valid">Option must be minimun 3 characters</p></td>
+      </tr>
+      
+      <!-- Submit -->
+        <tr>
+            <td></td>
+            <td><input type="submit" [disabled]="!questionForm.valid" value="Add Question"></td>
+            
+        </tr>
+        
+        </form>
+    </table>
+  </div>
+  

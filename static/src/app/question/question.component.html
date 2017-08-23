@@ -1,0 +1,36 @@
+<div class="header">
+    <h1 *ngIf="user">Hi {{user.name}}</h1>
+    <button [routerLink]="['/gohome']">Go home</button>
+    <button (click)="logout()">Log off</button>
+</div>
+
+<div *ngIf="question">
+    <h3>{{question.question}}</h3>
+    <table>
+        <tr>
+            <th>Option</th>
+            <th>Corrent count of votes</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>{{options.one}}</td>
+            <td>{{options.vote_one}}</td>
+            <td><button (click)="increaseVotes(options._id, 'one')">Vote</button></td>
+        </tr>
+        <tr>
+            <td>{{options.two}}</td>
+            <td>{{options.vote_two}}</td>
+            <td><button (click)="increaseVotes(options._id, 'two')">Vote</button></td>
+        </tr>
+        <tr>
+            <td>{{options.three}}</td>
+            <td>{{options.vote_three}}</td>
+            <td><button (click)="increaseVotes(options._id, 'three')">Vote</button></td>
+        </tr>
+        <tr>
+                <td>{{options.four}}</td>
+                <td>{{options.vote_four}}</td>
+                <td><button (click)="increaseVotes(options._id, 'four')">Vote</button></td>
+            </tr>
+    </table>
+</div>
